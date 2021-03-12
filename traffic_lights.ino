@@ -5,8 +5,6 @@
 # define PERSON_RED 9
 # define PERSON_GREEN 8
 
-int brightness = 0;    // how bright the LED is
-int fadeAmount = 5;    // how many points to fade the LED by
 
 void setup() {
   // put your setup code here, to run once:
@@ -24,28 +22,7 @@ void loop() {
   delay(5000);
 
   // Person Warning Stop
-  digitalWrite(CAR_RED, HIGH);
-  digitalWrite(PERSON_GREEN, LOW);
-  delay(200);
-  
-  digitalWrite(CAR_RED, HIGH);
-  digitalWrite(PERSON_GREEN, HIGH);
-  delay(200);
-  
-  digitalWrite(CAR_RED, HIGH);
-  digitalWrite(PERSON_GREEN, LOW);
-  delay(200);
-
-  digitalWrite(CAR_RED, HIGH);
-  digitalWrite(PERSON_GREEN, HIGH);
-  delay(200);
-  
-  digitalWrite(CAR_RED, HIGH);
-  digitalWrite(PERSON_GREEN, LOW);
-  digitalWrite(PERSON_RED, HIGH);
-  delay(1000);
-
-  // [END] Person warning stop
+  Person_Warning_Stop();
 
   // Car Start
   digitalWrite(CAR_RED, LOW);
@@ -53,9 +30,7 @@ void loop() {
   digitalWrite(PERSON_RED, HIGH);
   delay(4000);
 
-  digitalWrite(CAR_GREEN, LOW);
-  digitalWrite(PERSON_RED, HIGH);
-  delay(200);
+  Car_Warning_Stop();
   
   digitalWrite(CAR_YELLOW, HIGH);
   digitalWrite(PERSON_RED, HIGH);
@@ -63,12 +38,38 @@ void loop() {
 
   digitalWrite(CAR_YELLOW, LOW);
   digitalWrite(CAR_RED, HIGH);
-  delay(2500);
+  delay(2000);
 
   digitalWrite(PERSON_RED, LOW);
   delay(200);
   // [END] Car Start
+}
 
+void Person_Warning_Stop(){
+  for (int i = 0; i <= 5; i ++) {
+    digitalWrite(CAR_RED, HIGH);
+    digitalWrite(PERSON_GREEN, LOW);
+    delay(200);
+    
+    digitalWrite(CAR_RED, HIGH);
+    digitalWrite(PERSON_GREEN, HIGH);
+    delay(200);
+  }
+  
+  digitalWrite(CAR_RED, HIGH);
+  digitalWrite(PERSON_GREEN, LOW);
+  digitalWrite(PERSON_RED, HIGH);
+  delay(1000);
+}
 
-
+void Car_Warning_Stop() {
+  for (int i = 0; i <=5; i++) {
+    digitalWrite(CAR_GREEN, HIGH);
+    digitalWrite(PERSON_RED, HIGH);
+    delay(200);
+    
+    digitalWrite(CAR_GREEN, LOW);
+    digitalWrite(PERSON_RED, HIGH);
+    delay(200);
+  }
 }
